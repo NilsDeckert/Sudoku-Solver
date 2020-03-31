@@ -149,7 +149,7 @@ def printSudoku():
                     print("ALERT Y: " + str(n+1))
                     print("Letzte mögliche Zahl: " + str(Num_y[n]))
                     if len(Fields_y[FieldInputField_list_y]) == 8:
-                        Fields_y[int(FieldInputField_list_y)].append(Num_y[n][0])
+                        Fields_y[int(FieldInputField_list_y)].append(Num_y[n][0])   # Letze mögliche Zahl hinten anhängen
                     else:
                         Fields_y[FieldInputField_list_y] = [''.join(Num_y[n][0]) if x=="" else x for x in Fields_y[FieldInputField_list_y]] #Ersetzt Platzhalter mit letzer möglichen Zahl
                     Num_y[n].clear()                                    # Leert Liste mit möglichen Zahlen, da die letzte nun auch vergeben wurde
@@ -165,15 +165,23 @@ def printSudoku():
 
 
 
-    print(Fields_y)
-    # for z in range(len(Inputs)):
-    #     if z <= 8:
-    #         Inputs[z].delete(0, END)
-    #         Inputs[z].insert(0, Fields_y[z])
+        print(Fields_y)
+        print(Fields_x)
+    for z in range(len(Inputs)):
+        try:
+            Inputs[z].delete(0, END)
+            if z <= 8:
+                Inputs[z].insert(0, Fields_y[0][z])
+            if 8 < z <= 17:
+                Inputs[z].insert(0, Fields_y[1][z-9])
+        except:
+            return
+
+        # if z <= 8:
+        #     Inputs[z].delete(0, END)
+        #     Inputs[z].insert(0, Fields_y[z])
         # z1.delete(0, END)
         # z1.insert(0, z)
-    # Input1_1.delete(0, END)
-    # Input1_1.insert(0, "Hallo")
 
 myButton = Button(window, text="Button", command=printSudoku)
 
