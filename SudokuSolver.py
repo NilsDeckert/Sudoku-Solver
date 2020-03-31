@@ -148,28 +148,18 @@ def printSudoku():
                 if len(Num_y[n]) == 1:                                  # Wenn nur noch eine Zahl in dieser Zeile möglich ist
                     print("ALERT Y: " + str(n+1))
                     print("Letzte mögliche Zahl: " + str(Num_y[n]))
-                    # for a, b in enumerate(Fields_y[FieldInputField_list_y]):
-                    #     if b == "":
-                    #         Fields_y[FieldInputField_list_y][a] = Num_y[n][0]
-
                     if len(Fields_y[FieldInputField_list_y]) == 8:
-                        # print("n: " + str(n))
-                        # print("Num_y[n]:")
-                        # print(Num_y[n])
-                        # print(Fields_y[int(FieldInputField_list_y)])
-                        Fields_y[int(FieldInputField_list_y)].append(Num_y[0][0])
+                        Fields_y[int(FieldInputField_list_y)].append(Num_y[n][0])
                     else:
-                        Fields_y[FieldInputField_list_y] = [''.join(Num_y[0][0]) if x=="" else x for x in Fields_y[FieldInputField_list_y]] #Ersetzt Platzhalter mit letzer möglichen Zahl
-                    # print(len(Fields_y[FieldInputField_list_y]))
-
-                    # else:
-                    # Fields_y[FieldInputField_list_y] = [''.join(Num_y[0][0]) if x=="" else x for x in Fields_y[FieldInputField_list_y]] #Ersetzt Platzhalter mit letzer möglichen Zahl
-                    #print(Num_y[n])
+                        Fields_y[FieldInputField_list_y] = [''.join(Num_y[n][0]) if x=="" else x for x in Fields_y[FieldInputField_list_y]] #Ersetzt Platzhalter mit letzer möglichen Zahl
                     Num_y[n].clear()                                    # Leert Liste mit möglichen Zahlen, da die letzte nun auch vergeben wurde
                 if len(Num_x[n]) == 1:
                     print("ALERT X: " + str(n+1))
                     print(Num_x[n])
-                    Fields_x[FieldInputField_list_x] = [''.join(Num_x) if x=="" else x for x in Fields_x[FieldInputField_list_x]]
+                    if len(Fields_x[FieldInputField_list_x]) == 8:
+                        Fields_x[int(FieldInputField_list_x)].append(Num_x[n][0])
+                    else:
+                        Fields_x[FieldInputField_list_x] = [''.join(Num_x[n][0]) if x=="" else x for x in Fields_x[FieldInputField_list_x]] #Ersetzt Platzhalter mit letzer möglichen Zahl
                     Num_x[n].clear()
 
 
