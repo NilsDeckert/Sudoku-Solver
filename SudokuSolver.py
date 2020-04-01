@@ -117,7 +117,8 @@ Fields_y2 = []
 #p4rint(Fields_y1)
 
 def printSudoku():
-    for i in range(len(Inputs)):                                        # 81 mal
+    for il in range(len(Inputs)+1):
+        i = il-1                                        # 81 mal
         FieldInput = Inputs[i].get()                                    # Inhalt des Feldes
         FieldInputField = InputsStrings[i]                              # Name des Feldes
         FieldInputField = FieldInputField.split("Input")                # FieldInputField wird zu einer Liste
@@ -130,10 +131,10 @@ def printSudoku():
         #print("x:" + FieldInputField_x + " y:" + FieldInputField_y)
 
         if not Inputs[i].get():                                         # Wenn das Feld leer ist
-            if len(Fields_y[FieldInputField_list_y]) < 8:
-                Fields_y[FieldInputField_list_y].append("")                 # In der Liste der vorhandenen Werte Platzhalter einfügen
-            if len(Fields_x[FieldInputField_list_x]) < 8:
-                Fields_x[FieldInputField_list_x].append("")                 # In der Liste der vorhandenen Werte Platzhalter einfügen
+            #if len(Fields_y[FieldInputField_list_y]) < 8:
+            Fields_y[FieldInputField_list_y].append("")                 # In der Liste der vorhandenen Werte Platzhalter einfügen
+            #if len(Fields_x[FieldInputField_list_x]) < 8:
+            Fields_x[FieldInputField_list_x].append("")                 # In der Liste der vorhandenen Werte Platzhalter einfügen
         else:                                                           # Wenn das Feld nicht leer ist
             try:
                 Num_y[FieldInputField_list_y].remove(FieldInput)            # Entfernt Inhalt des Felds aus Liste möglicher Zahlen für diese Reihe
@@ -148,10 +149,17 @@ def printSudoku():
                 if len(Num_y[n]) == 1:                                  # Wenn nur noch eine Zahl in dieser Zeile möglich ist
                     print("ALERT Y: " + str(n+1))
                     print("Letzte mögliche Zahl: " + str(Num_y[n]))
-                    if len(Fields_y[FieldInputField_list_y]) == 8:
+                    if len(Fields_y[int(FieldInputField_list_y)]) == 9:
+                        for a, b in enumerate(Fields_y[int(FieldInputField_list_y)]):
+                            # print("a: " + str(a))
+                            # print("b: "+ str(b))
+                            if b == "":
+                                print("x-Koordinate: " + str(a+1))
+                                Fields_y[int(FieldInputField_list_y)][a] = Num_y[n][0]
+                        # Fields_y[int(FieldInputField_list_y)].append(Num_y[n][0])   # Letze mögliche Zahl hinten anhängen
+                    elif len(Fields_y[FieldInputField_list_y]) == 8:
                         Fields_y[int(FieldInputField_list_y)].append(Num_y[n][0])   # Letze mögliche Zahl hinten anhängen
-                    else:
-                        Fields_y[FieldInputField_list_y] = [''.join(Num_y[n][0]) if x=="" else x for x in Fields_y[FieldInputField_list_y]] #Ersetzt Platzhalter mit letzer möglichen Zahl
+                        #Fields_y[FieldInputField_list_y] = [''.join(Num_y[n][0]) if x=="" else x for x in Fields_y[FieldInputField_list_y]] #Ersetzt Platzhalter mit letzer möglichen Zahl
                     Num_y[n].clear()                                    # Leert Liste mit möglichen Zahlen, da die letzte nun auch vergeben wurde
                 if len(Num_x[n]) == 1:
                     print("ALERT X: " + str(n+1))
@@ -166,7 +174,7 @@ def printSudoku():
 
 
         print(Fields_y)
-        print(Fields_x)
+        # print(Fields_x)
     for z in range(len(Inputs)):
         try:
             Inputs[z].delete(0, END)
