@@ -134,7 +134,7 @@ def printSudoku():
             print("x:" + str(FieldInputField_list_x) + " " + str(Num_x[FieldInputField_list_x]))
 
     for i in range(len(Inputs)):
-        #i = il-1                                                                        # 81 mal
+        #i = il-1                                                                       # 81 mal
         FieldInput = Inputs[i].get()                                                    # Inhalt des Feldes
         FieldInputField = InputsStrings[i]                                              # Name des Feldes
         FieldInputField = FieldInputField.split("Input")                                # FieldInputField wird zu einer Liste
@@ -144,44 +144,44 @@ def printSudoku():
         FieldInputField_x = FieldInputField[1]                                          # x-Koordninate des Feldes
         FieldInputField_list_y = int(FieldInputField_y)-1
         FieldInputField_list_x = int(FieldInputField_x)-1
-        for rep in range(9):                                                        ### Nötig? ###
+        for rep in range(9):                                                            ### Nötig? ###
             for n in range(9):
-                if len(Num_y[n]) == 1:                                              # Geht alle Zeilen ab, prüft ob irgendwo nur noch eine Zahl möglich ist
+                if len(Num_y[n]) == 1:                                                  # Geht alle Zeilen ab, prüft ob irgendwo nur noch eine Zahl möglich ist
                     print("y: " + str(n))
                     missing_number = Num_y[n][0]
                     print("Nur noch eine mögliche Zahl: " + missing_number)
-                    for x_value, content in enumerate(Fields_y[n]):                 # Geht jedes Feld in der gefundenen Zeile ab, überprüft Inhalt
-                        if content == "":                                           # wenn das Feld noch nicht ausgefüllt wurde
+                    for x_value, content in enumerate(Fields_y[n]):                     # Geht jedes Feld in der gefundenen Zeile ab, überprüft Inhalt
+                        if content == "":                                               # wenn das Feld noch nicht ausgefüllt wurde
                             print("Trage " + missing_number + " in Liste für y=" + str(n) + " an der Stelle " + str(x_value) + " ein...")
                             Fields_y[n][x_value] = missing_number
-                            print("y=" + str(n) + " " + str(Fields_y[n]))                  # Eintragen der letztmöglichen Zahl dieser Zeile #Num_y[n][0]
+                            print("y=" + str(n) + " " + str(Fields_y[n]))               # Eintragen der letztmöglichen Zahl dieser Zeile #Num_y[n][0]
                             print("Trage " + missing_number + " auch in Liste für x=" + str(x_value) + " an der Stelle " + str(n) + " ein...")
-                            Fields_x[x_value][n] = missing_number                   # Gleiche Zahl wird auch in Spalte eingetragen
+                            Fields_x[x_value][n] = missing_number                       # Gleiche Zahl wird auch in Spalte eingetragen
                             print("x=" + str(x_value) + " " + str(Fields_x[x_value]))
                             print("Entferne " + missing_number + " aus Liste für x=" + str(x_value) + " ...")
-                            Num_x[x_value].remove(missing_number)                   # Entfernt eingefügte Zahl aus Liste möglicher Zahlen für Spalte
+                            Num_x[x_value].remove(missing_number)                       # Entfernt eingefügte Zahl aus Liste möglicher Zahlen für Spalte
                             print("übrig bleiben: x=" + str(x_value) + " " + str(Num_x[x_value]))
                             print("Leere Liste für y=" + str(n) + " ...")
-                            Num_y[n].clear()                                        # Leert Liste möglicher Zahlen für Zeile -> Entfernt eingefügte Zahl
+                            Num_y[n].clear()                                            # Leert Liste möglicher Zahlen für Zeile -> Entfernt eingefügte Zahl
                             print("#########")
 
-                if len(Num_x[n]) == 1:                                              # Geht alle Spalten ab, prüft ob irgendwo nur noch eine Zahl möglich ist
+                if len(Num_x[n]) == 1:                                                  # Geht alle Spalten ab, prüft ob irgendwo nur noch eine Zahl möglich ist
                     print("x: " + str(n))
                     missing_number = Num_x[n][0]
                     print("nur noch eine mögliche Zahl: " + missing_number)
-                    for y_value, content in enumerate(Fields_x[n]):                 # Geht jedes Feld in der gefundenen Spalte ab, überprüft Inhalt
-                        if content == "":                                           # wenn das Feld noch nicht ausgefüllt wurde
+                    for y_value, content in enumerate(Fields_x[n]):                     # Geht jedes Feld in der gefundenen Spalte ab, überprüft Inhalt
+                        if content == "":                                               # wenn das Feld noch nicht ausgefüllt wurde
                             print("Trage " + missing_number + " in die Liste für x=" + str(n) + " an der Stelle " + str(y_value) + " ein...")
-                            Fields_x[n][y_value] = missing_number                   # Eintragen der letztmöglichen Zahl dieser Spalte
+                            Fields_x[n][y_value] = missing_number                       # Eintragen der letztmöglichen Zahl dieser Spalte
                             print("x=" + str(n) + " " + str(Fields_x[n]))
                             print("Trage " + missing_number + " auch in die Liste für y=" + str(y_value) + " an der Stelle " + str(n) + " ein...")
-                            Fields_y[y_value][n] = missing_number                   # Gleiche Zahl wird auch in Zeile eingetragen
+                            Fields_y[y_value][n] = missing_number                       # Gleiche Zahl wird auch in Zeile eingetragen
                             print("y=" + str(y_value) + " " + str(Fields_y[y_value]))
                             print("Entferne " + missing_number + " aus Liste für y=" + str(y_value) + " ...")
-                            Num_y[y_value].remove(missing_number)                   # Entfernt eingefügte Zahl aus Liste möglicher Zahlen für Zeile
+                            Num_y[y_value].remove(missing_number)                       # Entfernt eingefügte Zahl aus Liste möglicher Zahlen für Zeile
                             print("übrig bleiben: y= " + str(y_value) + " " + str(Num_y[y_value]))
                             print("Leere Liste für x= " + str(n) + " ...")
-                            Num_x[n].clear()                                        # Leert Liste möglicher Zahlen für Spalte -> Entfernt eingefügte Zahl
+                            Num_x[n].clear()                                            # Leert Liste möglicher Zahlen für Spalte -> Entfernt eingefügte Zahl
                             print("#########")
 
 
