@@ -1,3 +1,5 @@
+# -*- coding: iso-8859-1 -*-
+import time
 from tkinter import *
 
 window = Tk()
@@ -100,30 +102,19 @@ Num_y = []                                                                      
 Num_x = []                                                                              # Liste mit 9 Listen, enhält mögliche Zahlen für jede Spalte
 Fields_y = []                                                                           # Liste mit 9 Listen der Zahlen pro Zeile
 Fields_x = []                                                                           # Liste mit 9 Listen der Zahlen pro Spalte
+Fields = []
 
 for p in range(9):
     Num_y.append([str(i) for i in range(1,10)])                                         # Fügt 9 Listen mit den Zahlen 1 bis 9 hinzu
     Num_x.append([str(i) for i in range(1,10)])                                         # Fügt 9 Listen mit den Zahlen 1 bis 9 hinzu
     Fields_y.append(["" for i in range(9)])                                             # Liste mit 9 Listen der Zahlen pro Zeile
     Fields_x.append(["" for i in range(9)])                                             # Liste mit 9 Listen der Zahlen pro Spalte
-    #Num_y.append(["1","2","3","4","5","6","7","8","9"])
-    #Num_x.append(["1","2","3","4","5","6","7","8","9"])
 
-print(Num_y)
-print(Fields_y)
 
 Fields_y2 = []
-# for n in range(9):
-#     if n <= 9:
-#         Fields_y1.append(Num_x[n])
-#     elif 9 > n <= 18:
-#         Fields_y2.append(Num_x[n])
-
-#p4rint(Fields_y1)
 
 def printSudoku():
-    for il in range(len(Inputs)+1):
-        i = il-1                                                                        # 81 mal
+    for i in range(len(Inputs)):                                                        # 81 mal
         FieldInput = Inputs[i].get()                                                    # Inhalt des Feldes
         FieldInputField = InputsStrings[i]                                              # Name des Feldes
         FieldInputField = FieldInputField.split("Input")                                # FieldInputField wird zu einer Liste
@@ -133,71 +124,74 @@ def printSudoku():
         FieldInputField_x = FieldInputField[1]                                          # x-Koordninate des Feldes
         FieldInputField_list_y = int(FieldInputField_y)-1
         FieldInputField_list_x = int(FieldInputField_x)-1
-        #print("x:" + FieldInputField_x + " y:" + FieldInputField_y)
 
         if FieldInput:
             Fields_y[FieldInputField_list_y][FieldInputField_list_x] = FieldInput       # Füllt die Zahl im Feld an die Stelle des x-Werts in der Liste
             Fields_x[FieldInputField_list_x][FieldInputField_list_y] = FieldInput       # Füllt die Zahl im Feld an die Stelle des y-Werts in der Liste
             Num_y[FieldInputField_list_y].remove(FieldInput)
+            print("y:" + str(FieldInputField_list_y) + " " + str(Num_y[FieldInputField_list_y]))
             Num_x[FieldInputField_list_x].remove(FieldInput)
-            for n in range(8):
-                for rep in range(2):
-                    if len(Num_y[n]) == 1:                                              # Geht alle Zeilen ab, prüft ob irgendwo nur noch eine Zahl möglich ist
-                        print("y: " + str(n))
-                        print("nur noch eine mögliche Zahl:")
-                        missing_number = Num_y[n][0]
-                        print(str(Num_y[n][0]))
-                        for x_value, content in enumerate(Fields_y[n]):                 # Geht jedes Feld in der gefundenen Zeile ab, überprüft Inhalt
-                            if content == "":                                           # wenn das Feld noch nicht ausgefüllt wurde
-                                Fields_y[n][x_value] = missing_number                   # Eintragen der letztmöglichen Zahl dieser Zeile #Num_y[n][0]
-                                Fields_x[x_value][n] = missing_number                   # Gleiche Zahl wird auch in Spalte eingetragen
-                                Num_x[x_value].remove(missing_number)                   # Entfernt eingefügte Zahl aus Liste möglicher Zahlen für Spalte
-                                Num_y[n].clear()                                        # Leert Liste möglicher Zahlen für Zeile -> Entfernt eingefügte Zahl
-                                print(str(Fields_y[n]))
-                                print(str(Fields_x[x_value]))
+            print("x:" + str(FieldInputField_list_x) + " " + str(Num_x[FieldInputField_list_x]))
 
-                    if len(Num_x[n]) == 1:                                              # Geht alle Spalten ab, prüft ob irgendwo nur noch eine Zahl möglich ist
-                        print("x: " + str(n))
-                        print("nur noch eine mögliche Zahl:")
-                        missing_number = Num_y[n][0]
-                        print(str(Num_x[n][0]))
-                        for y_value, content in enumerate(Fields_x[n]):                 # Geht jedes Feld in der gefundenen Spalte ab, überprüft Inhalt
-                            if content == "":                                           # wenn das Feld noch nicht ausgefüllt wurde
-                                Fields_x[n][y_value] = missing_number                   # Eintragen der letztmöglichen Zahl dieser Spalte
-                                Fields_y[y_value][n] = missing_number                   # Gleiche Zahl wird auch in Zeile eingetragen
-                                Num_y[y_value].remove(missing_number)                   # Entfernt eingefügte Zahl aus Liste möglicher Zahlen für Zeile
-                                Num_x[n].clear()                                        # Leert Liste möglicher Zahlen für Spalte -> Entfernt eingefügte Zahl
+    for i in range(len(Inputs)):
+        #i = il-1                                                                        # 81 mal
+        FieldInput = Inputs[i].get()                                                    # Inhalt des Feldes
+        FieldInputField = InputsStrings[i]                                              # Name des Feldes
+        FieldInputField = FieldInputField.split("Input")                                # FieldInputField wird zu einer Liste
+        FieldInputField.remove("")
+        FieldInputField = FieldInputField[0].split("_")
+        FieldInputField_y = FieldInputField[0]                                          # y-Koordninate des Feldes
+        FieldInputField_x = FieldInputField[1]                                          # x-Koordninate des Feldes
+        FieldInputField_list_y = int(FieldInputField_y)-1
+        FieldInputField_list_x = int(FieldInputField_x)-1
+        for rep in range(9):                                                        ### Nötig? ###
+            for n in range(9):
+                if len(Num_y[n]) == 1:                                              # Geht alle Zeilen ab, prüft ob irgendwo nur noch eine Zahl möglich ist
+                    print("y: " + str(n))
+                    missing_number = Num_y[n][0]
+                    print("Nur noch eine mögliche Zahl: " + missing_number)
+                    for x_value, content in enumerate(Fields_y[n]):                 # Geht jedes Feld in der gefundenen Zeile ab, überprüft Inhalt
+                        if content == "":                                           # wenn das Feld noch nicht ausgefüllt wurde
+                            print("Trage " + missing_number + " in Liste für y=" + str(n) + " an der Stelle " + str(x_value) + " ein...")
+                            Fields_y[n][x_value] = missing_number
+                            print("y=" + str(n) + " " + str(Fields_y[n]))                  # Eintragen der letztmöglichen Zahl dieser Zeile #Num_y[n][0]
+                            print("Trage " + missing_number + " auch in Liste für x=" + str(x_value) + " an der Stelle " + str(n) + " ein...")
+                            Fields_x[x_value][n] = missing_number                   # Gleiche Zahl wird auch in Spalte eingetragen
+                            print("x=" + str(x_value) + " " + str(Fields_x[x_value]))
+                            print("Entferne " + missing_number + " aus Liste für x=" + str(x_value) + " ...")
+                            Num_x[x_value].remove(missing_number)                   # Entfernt eingefügte Zahl aus Liste möglicher Zahlen für Spalte
+                            print("übrig bleiben: x=" + str(x_value) + " " + str(Num_x[x_value]))
+                            print("Leere Liste für y=" + str(n) + " ...")
+                            Num_y[n].clear()                                        # Leert Liste möglicher Zahlen für Zeile -> Entfernt eingefügte Zahl
+                            print("#########")
 
-    print(Fields_y)
-    print(Fields_x)
+                if len(Num_x[n]) == 1:                                              # Geht alle Spalten ab, prüft ob irgendwo nur noch eine Zahl möglich ist
+                    print("x: " + str(n))
+                    missing_number = Num_x[n][0]
+                    print("nur noch eine mögliche Zahl: " + missing_number)
+                    for y_value, content in enumerate(Fields_x[n]):                 # Geht jedes Feld in der gefundenen Spalte ab, überprüft Inhalt
+                        if content == "":                                           # wenn das Feld noch nicht ausgefüllt wurde
+                            print("Trage " + missing_number + " in die Liste für x=" + str(n) + " an der Stelle " + str(y_value) + " ein...")
+                            Fields_x[n][y_value] = missing_number                   # Eintragen der letztmöglichen Zahl dieser Spalte
+                            print("x=" + str(n) + " " + str(Fields_x[n]))
+                            print("Trage " + missing_number + " auch in die Liste für y=" + str(y_value) + " an der Stelle " + str(n) + " ein...")
+                            Fields_y[y_value][n] = missing_number                   # Gleiche Zahl wird auch in Zeile eingetragen
+                            print("y=" + str(y_value) + " " + str(Fields_y[y_value]))
+                            print("Entferne " + missing_number + " aus Liste für y=" + str(y_value) + " ...")
+                            Num_y[y_value].remove(missing_number)                   # Entfernt eingefügte Zahl aus Liste möglicher Zahlen für Zeile
+                            print("übrig bleiben: y= " + str(y_value) + " " + str(Num_y[y_value]))
+                            print("Leere Liste für x= " + str(n) + " ...")
+                            Num_x[n].clear()                                        # Leert Liste möglicher Zahlen für Spalte -> Entfernt eingefügte Zahl
+                            print("#########")
 
-################################################
-################################################
-################################################
-    #
-    #
-    #
-    #
-    #     print(Fields_y)
-    #     # print(Fields_x)
-    # for z in range(len(Inputs)):
-    #     try:
-    #         Inputs[z].delete(0, END)
-    #         if z <= 8:
-    #             Inputs[z].insert(0, Fields_y[0][z])
-    #         if 8 < z <= 17:
-    #             Inputs[z].insert(0, Fields_y[1][z-9])
-    #     except:
-    #         return
-    #
-    #     # if z <= 8:
-    #     #     Inputs[z].delete(0, END)
-    #     #     Inputs[z].insert(0, Fields_y[z])
-    #     # z1.delete(0, END)
-    #     # z1.insert(0, z)
-################################################
-################################################
-################################################
+
+    for List_num in range(9):
+        for num in range(9):
+            Fields.append(Fields_y[List_num][num])
+
+    for content in range(len(Fields)):
+        Inputs[content].delete(0, END)
+        Inputs[content].insert(0, Fields[content])
 
 myButton = Button(window, text="Button", command=printSudoku)
 
