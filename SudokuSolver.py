@@ -3,7 +3,7 @@ import time
 from tkinter import *
 
 window = Tk()
-window.title("GUI Test")
+window.title("SudokuSolver")
 
 default_args = {"master":window,"width":8, "background":"grey"}
 
@@ -193,7 +193,7 @@ def printSudoku():
         Inputs[content].delete(0, END)
         Inputs[content].insert(0, Fields[content])
 
-myButton = Button(window, text="Button", command=printSudoku)
+myButton = Button(window, text="Solve", command=printSudoku)
 
 #Input1 = Entry(window)
 
