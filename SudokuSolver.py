@@ -3,7 +3,7 @@ import time
 from tkinter import *
 
 window = Tk()
-window.title("SudokuSolver")
+window.title("Sudoku Solver")
 
 default_args = {"master":window,"width":8, "background":"grey"}
 
