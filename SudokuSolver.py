@@ -25,7 +25,7 @@ Input2_7 = Entry(**default_args); Input2_8 = Entry(**default_args); Input2_9 = E
 
 
 Input3_1 = Entry(**default_args); Input3_2 = Entry(**default_args); Input3_3 = Entry(**default_args)
-Label3_1 = Label(window, text="", font =("Helvetica", 1))
+Label3_1 = Label(window, text="Hallo", font =("Helvetica", 1), background="yellow")
 Input3_4 = Entry(**default_args); Input3_5 = Entry(**default_args); Input3_6 = Entry(**default_args)
 Label3_2 = Label(window, text="")
 Input3_7 = Entry(**default_args); Input3_8 = Entry(**default_args); Input3_9 = Entry(**default_args)
@@ -46,7 +46,7 @@ Input5_7 = Entry(**default_args); Input5_8 = Entry(**default_args); Input5_9 = E
 
 
 Input6_1 = Entry(**default_args); Input6_2 = Entry(**default_args); Input6_3 = Entry(**default_args)
-Label6_1 = Label(window, text="", font=("Helvetica", 1))
+Label6_1 = Label(window, text="", font=("Helvetica", 1), background="green")
 Input6_4 = Entry(**default_args); Input6_5 = Entry(**default_args); Input6_6 = Entry(**default_args)
 Label6_2 = Label(window, text="")
 Input6_7 = Entry(**default_args); Input6_8 = Entry(**default_args); Input6_9 = Entry(**default_args)
@@ -205,25 +205,34 @@ myButton = Button(window, text="Solve", command=printSudoku)
 columns = ["1", "2", "3", "5", "6", "7", "9", "10", "11"]
 num_xyz = 0
 
-for row in range(1, 12):
-    print(row)
-    if row != 4 and row != 8:
-        for column_n in range(len(columns)):
-            #print("row: " + str(row))
-            #print("column: " + str(num_xyz))
-            #print(Inputs[num_xyz])
-            Inputs[num_xyz].grid(row=row, column=column_n)
-            num_xyz += 1
-    elif row == 4:
-        Label3_1.grid(row="4", column="4")
-    elif row == 8:
-        Label6_1.grid(row="8", column="8")
-    if row == 1:
-        Label1_1.grid(row="1", column="4")
-        Label1_2.grid(row="1", column="8")
+# for row in range(1, 12):
+#     print(row)
+#     if row != 4 and row != 8:
+#         for column_n in range(len(columns)):
+#             #print("row: " + str(row))
+#             #print("column: " + str(num_xyz))
+#             #print(Inputs[num_xyz])
+#             Inputs[num_xyz].grid(row=row, column=column_n)
+#             num_xyz += 1
+#     elif row == 4:
+#         Label3_1.grid(row=3, column=2)
+#         Label4_1.grid(row=4, column=2)
+#     elif row == 8:
+#         Label6_1.grid(row=8, column=8)
+
+
+for item in range(len(Inputs)):
+    Inputs[item].pack(fill=BOTH)
+    Inputs[item].place()
+
+
+    # if row == 1:
+    #     Label1_1.grid(row="1", column="4")
+    #     Label1_2.grid(row="1", column="8")
 print(num_xyz)
 
-
+# window.grid_columnconfigure(2, pad=100)
+# window.grid_columnconfigure(3, minsize=80)
 
 #     print(str(InputField))
 #     print(str(InputContent))
@@ -331,8 +340,6 @@ print(num_xyz)
 # Input9_8.grid(row="11", column="10")
 # Input9_9.grid(row="11", column="11")
 
-
-
-myButton.grid(row="12", column="6")
+#myButton.grid(row="12", column="6")
 #Input1.grid(row="5", column="2")
 window.mainloop()
