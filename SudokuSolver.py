@@ -3,7 +3,7 @@ import time
 from tkinter import *
 
 window = Tk()
-window.title("Sudoku Solver")
+window.title("SudokuSolver")
 
 default_args = {"master":window,"width":8, "background":"grey"}
 
@@ -200,11 +200,9 @@ myButton = Button(window, text="Solve", command=printSudoku)
 Input1_1.grid(row="1", column="1")
 Input1_2.grid(row="1", column="2")
 Input1_3.grid(row="1", column="3")
-#Label1_1.grid(row="1", column="4") #
 Input1_4.grid(row="1", column="5")
 Input1_5.grid(row="1", column="6")
 Input1_6.grid(row="1", column="7")
-#Label1_2.grid(row="1", column="8") #
 Input1_7.grid(row="1", column="9")
 Input1_8.grid(row="1", column="10")
 Input1_9.grid(row="1", column="11")
@@ -294,5 +292,4 @@ Input9_8.grid(row="11", column="10")
 Input9_9.grid(row="11", column="11")
 
 myButton.grid(row="12", column="6")
-#Input1.grid(row="5", column="2")
 window.mainloop()
