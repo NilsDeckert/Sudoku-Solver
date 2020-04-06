@@ -111,7 +111,17 @@ for p in range(9):
     Fields_x.append(["" for i in range(9)])                                             # Liste mit 9 Listen der Zahlen pro Spalte
 
 
-Fields_y2 = []
+squares = [[Input1_1, Input1_2, Input1_3, Input2_1, Input2_2, Input2_3, Input3_1, Input3_2, Input3_3],
+[Input1_4, Input1_5, Input1_6, Input2_4, Input2_5, Input2_6, Input3_4, Input3_5, Input3_6],
+[Input1_7, Input1_8, Input1_9, Input2_7, Input2_8, Input2_9, Input3_7, Input3_8, Input3_9],     #   1   2   3
+[Input4_1, Input4_2, Input4_3, Input5_1, Input5_2, Input5_3, Input6_1, Input6_2, Input6_3],     #   4   5   6
+[Input4_4, Input4_5, Input4_6, Input5_4, Input5_5, Input5_6, Input6_4, Input6_5, Input6_6],     #   7   8   9
+[Input4_7, Input4_8, Input4_9, Input5_7, Input5_8, Input5_9, Input6_7, Input6_8, Input6_9],
+[Input7_1, Input7_2, Input7_3, Input8_1, Input8_2, Input8_3, Input9_1, Input9_2, Input9_3],
+[Input7_4, Input7_5, Input7_6, Input8_4, Input8_5, Input8_6, Input9_4, Input9_5, Input9_6],
+[Input7_7, Input7_8, Input7_9, Input8_7, Input8_8, Input8_9, Input9_7, Input9_8, Input9_9]]
+
+
 
 def printSudoku():
     for i in range(len(Inputs)):                                                        # 81 mal
@@ -205,9 +215,9 @@ for row in range(1, 12):
             Inputs[counter].grid(row=row, column=columns[column_n])
             counter += 1
     elif row == 4:
-        Label3_1.grid(row=4, column=4)
+        Label3_1.grid(row=row, column=row)
     elif row == 8:
-        Label6_1.grid(row=8, column=8)
+        Label6_1.grid(row=row, column=row)
 
 myButton.grid(row="12", column="6")
-window.mainloop()
+#window.mainloop()
