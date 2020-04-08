@@ -220,4 +220,4 @@ for row in range(1, 12):
         Label6_1.grid(row=row, column=row)
 
 myButton.grid(row="12", column="6")
-#window.mainloop()
+window.mainloop()
